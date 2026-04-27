@@ -19,6 +19,8 @@
 > PostgreSQL instance you may already have running on the default port (5432).
 > This requires its own separate data directory, set up once using the steps below.
 
+> Also could just make a new database in the postgresql setup defined in class, that works too.
+
 #### First-time setup (run once)
 
 1. Make sure PostgreSQL tools are on your path:
@@ -70,8 +72,7 @@ pg_ctl -D /usr/local/var/postgresql@15-project stop
 > ```
 > Then just run `startproject` / `stopproject` each session.
 
-### Application
-### Application
+### Backend Application (Python Flask App)
 1. Clone repository into a local directory
 2. Start PostgreSQL server (see above)
 3. **First time only** — initialize tables and import data:
@@ -80,10 +81,16 @@ pg_ctl -D /usr/local/var/postgresql@15-project stop
    python3 database.py
 ```
 4. Start app: `python run.py`
-5. Access the app at: `http://localhost:5000`
+5. App is accessed through: `http://localhost:5000`
 6. Stop the app via CTRL+C
 
 > **Note:** The URL is `http://` not `https://` for local development.
+
+### Frontend Application (Vite App)
+1. `cd frontend/`
+If this is first run, do `npm install`
+2. `npm run dev`
+3. Access at http://localhost:5173/
 
 ### Debug
 - Connect to the PostgreSQL project database with psql:
