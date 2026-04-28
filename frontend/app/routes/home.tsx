@@ -13,6 +13,11 @@ export default function Home({ loaderData }: Route.ComponentProps) {
   useEffect(() => {
     const token = window.localStorage.getItem("token");
     const userStr = window.localStorage.getItem("user");
+    if (!token || !userStr) {
+      setIsLoggedIn(false);
+      setIsAdmin(false);
+      return;
+    }
     const user = userStr ? JSON.parse(userStr) : null;
     setIsLoggedIn(!!token);
     setIsAdmin(!!user && user.role === "admin");

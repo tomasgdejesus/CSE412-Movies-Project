@@ -38,6 +38,25 @@ export default function Login({ loaderData }: Route.ComponentProps) {
     function handlePassword(e : React.ChangeEvent<HTMLInputElement>){
     setPassword(e.target.value);
   }
+
+  async function handleRegister(){
+    setLoading(true);
+    setError(null);
+    try {
+      const res = await axios.post("http://127.0.0.1:5000/register", {
+        username,
+        password,
+      });
+      console.log("Registration successful:", res.data);
+      handleLogin(); // Automatically log in after successful registration
+    } catch (err) {
+      console.error("Error during registration:", err);
+      setError("Error on registration");
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
     <div className="bg-gray-500 h-screen flex items-center justify-center">
         <div className="bg-gray-200 p-6 flex flex-col gap-3 w-80">
@@ -59,6 +78,7 @@ export default function Login({ loaderData }: Route.ComponentProps) {
             </button>
             <button 
             className="hover:bg-gray-700 px-3 py-2 rounded-full"
+            onClick={handleRegister}
             >
               Register Account
             </button>
