@@ -1,9 +1,10 @@
 import { useState } from "react";
 import type { Route } from "./+types/home";
 import axios from "axios";
-
+import { useNavigate } from "react-router";
 
 export default function Login({ loaderData }: Route.ComponentProps) {
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,8 +20,10 @@ export default function Login({ loaderData }: Route.ComponentProps) {
       });
       const {token, user} = res.data;
       localStorage.setItem("token", token)
+      localStorage.setItem("user", JSON.stringify(user))
       console.log("Successful Login")
-
+      window.dispatchEvent(new Event("authChange")) //  notify so layout.tsx can update
+      navigate("/")
     }catch(err){
       console.log("Error: ", err)
       setError("Error on login")

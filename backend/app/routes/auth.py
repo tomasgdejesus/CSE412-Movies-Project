@@ -22,6 +22,7 @@ def login():
         {
             "user_id": 1,
             "username": username,
+            "role": "admin",
             "exp": datetime.datetime.now(ZoneInfo("America/Phoenix")) + datetime.timedelta(hours=1)
         },
         current_app.config["SECRET_KEY"],
@@ -32,6 +33,7 @@ def login():
         "token": token,
         "user": {
             "id": 1,
-            "username": username
+            "username": username,
+            "role": "admin"
         }
     }),200
