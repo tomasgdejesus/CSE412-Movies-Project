@@ -11,6 +11,7 @@ export default [
     route("admin","routes/admin.tsx"),
     route("dashboard","routes/dashboard.tsx"),
     route("browse", "routes/browse.tsx"),
-    route("favorites", "routes/favorites.tsx")
+    route("favorites", "routes/favorites.tsx"),
+    route("movie/:id", "routes/movie.tsx"),
     ]),
 ] satisfies RouteConfig;

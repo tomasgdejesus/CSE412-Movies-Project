@@ -9,10 +9,17 @@ export function loader() {
 export default function Layout({ loaderData }: Route.ComponentProps) {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [user, setUser] = useState<{ username: string } | null>(null);
 
   function checkAuth() {
     const token = window.localStorage.getItem("token");
+    const userStr = window.localStorage.getItem("user");
     setIsLoggedIn(!!token);
+
+    if (userStr)
+      setUser(JSON.parse(userStr));
+    else
+      setUser(null);
   }
 
   useEffect(() => {
@@ -43,6 +50,12 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
               Home
             </Link>
           </div>
+
+          {isLoggedIn && user && (
+            <span className="text-sm text-gray-300">
+              Welcome, {user.username}
+            </span>
+          )}
 
           {isLoggedIn && (
             <button

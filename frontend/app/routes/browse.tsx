@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router";
 
 type Media = {
   show_id: number;
@@ -69,6 +70,9 @@ export default function Browse() {
               <div>
                 <h2 className="font-semibold text-lg">{m.title}</h2>
                 <p className="text-gray-400 text-sm">{m.type} · {m.release_year} · {m.rating}</p>
+                <Link to={`/movie/${m.show_id}`} className="text-blue-500 hover:underline">
+                  View Details
+                </Link>
               </div>
               {token && (
                 <button
