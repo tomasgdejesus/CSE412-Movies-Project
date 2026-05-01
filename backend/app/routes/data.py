@@ -55,4 +55,37 @@ def countries_genres():
         return jsonify({"error": str(e)}), 500
     finally:
         conn.close()
+    
+#added new method
  
+@data_bp.route("/api/media", methods=["GET"])
+def get_media():
+    conn, err, status = _get_db()
+    if err:
+        return err, status
+    try:
+        #get 100 shows
+        with conn.cursor() as cur:
+            cur.execute("""
+                SELECT show_id, title, type, release_year, rating, description
+                FROM media
+                ORDER BY release_year DESC
+                LIMIT 100
+            """)
+            rows = cur.fetchall()
+            media = [
+                {
+                    "show_id": r[0],
+                    "title": r[1],
+                    "type": r[2],
+                    "release_year": r[3],
+                    "rating": r[4],
+                    "description": r[5],
+                }
+                for r in rows
+            ]
+            return jsonify(media), 200
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+    finally:
+        conn.close()
