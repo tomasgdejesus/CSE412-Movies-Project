@@ -31,6 +31,16 @@ export default function Home({ loaderData }: Route.ComponentProps) {
           Analytics Dashboard with Visualization
         </Link>
 
+        <Link to="/browse" className="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl px-6 py-4 text-center transition-colors">
+  Browse Top 100 Titles
+</Link>
+
+      {isLoggedIn && (
+  <Link to="/favorites" className="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl px-6 py-4 text-center transition-colors">
+    My Favorites
+  </Link>
+)}
+
         {isLoggedIn && isAdmin && (
           <Link to="/admin" className="bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-xl px-6 py-4 text-center transition-colors">
             Admin Panel
@@ -42,6 +52,7 @@ export default function Home({ loaderData }: Route.ComponentProps) {
             Sign In
           </Link>
         )}
+        
       </div>
     </div>
   );
