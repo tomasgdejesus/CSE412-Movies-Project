@@ -61,27 +61,33 @@ export default function Login({ loaderData }: Route.ComponentProps) {
     <div className="bg-gray-500 h-screen flex items-center justify-center">
         <div className="bg-gray-200 p-6 flex flex-col gap-3 w-80">
             <input 
-            type="text" 
-            placeholder="Enter your username" 
-            className="pl-2"
-            onChange={handleUsername}></input>
+                type="text" 
+                placeholder="Enter your username" 
+                className="pl-2"
+                onChange={handleUsername}
+            />
             <input 
-            type="password" 
-            placeholder="Enter your password" 
-            className="pl-2"
-            onChange={handlePassword}></input>
+                type="password" 
+                placeholder="Enter your password" 
+                className="pl-2"
+                onChange={handlePassword}
+            />
             <button
-             className="hover:bg-gray-700 px-3 py-2 rounded-full"
-             onClick={handleLogin}
+                className="hover:bg-gray-700 px-3 py-2 rounded-full"
+                onClick={handleLogin}
             >
-              Login
+                Login
             </button>
             <button 
-            className="hover:bg-gray-700 px-3 py-2 rounded-full"
-            onClick={handleRegister}
+                className="hover:bg-gray-700 px-3 py-2 rounded-full"
+                onClick={handleRegister}
             >
-              Register Account
+                Register Account
             </button>
+
+            <p className="text-xs text-gray-600 mt-2 text-center">
+                Admin login: admin / 123
+            </p>
         </div>
     </div>
   );
