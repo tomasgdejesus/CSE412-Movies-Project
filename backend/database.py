@@ -173,10 +173,9 @@ def main():
     else:
         print("Connection to PostGreSQL Encountered an Error!")
         return
-    #hardReset(user_name, conn)
+    hardReset(user_name, conn)
     initDatabase(conn)
     import_csv_to_db(conn)
-    hardReset(user_name, conn)
 
 if __name__ == "__main__":
     main()
